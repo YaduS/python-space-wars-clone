@@ -23,7 +23,7 @@ class EnemyShip(Turtle):
     def set_shape(self, starting_position):
         self.penup()
         self.setposition(starting_position)
-        self.shape("./space-wars-game/spaceship.gif")
+        self.shape("./spaceship.gif")
         self.resizemode("user")
         self.shapesize(stretch_wid=0.25, stretch_len=0.25, outline=0)
         self.left(90)

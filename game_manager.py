@@ -21,7 +21,7 @@ class GameManager:
         self.create_game_elements()
 
     def create_game_elements(self):
-        self.screen.register_shape("./space-wars-game/spaceship.gif")
+        self.screen.register_shape("./spaceship.gif")
         self.main_ship = MainShip(screen=self.screen)
 
         self.generate_enemy_ships()

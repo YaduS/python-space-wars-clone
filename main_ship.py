@@ -18,7 +18,7 @@ class MainShip(Turtle):
     def set_shape(self, screen: _Screen):
         self.penup()
         self.setposition(STARTING_POSITION)
-        self.shape("./space-wars-game/spaceship.gif")
+        self.shape("./spaceship.gif")
         self.resizemode("user")
         self.shapesize(stretch_wid=0.5, stretch_len=0.5, outline=0)
 
