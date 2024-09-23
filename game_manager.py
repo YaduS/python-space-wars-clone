@@ -66,8 +66,7 @@ class GameManager:
             for i, enemy_ship in enumerate(self.enemy_ships):
                 if enemy_ship.distance(laser) < 50:
                     # remove enemy_ship
-                    enemy_ship.clear()
-                    enemy_ship.hideturtle()
+                    enemy_ship.destroy_ship_artifacts()
                     del self.enemy_ships[i]
 
                     # remove laser so that it doesn't hit enemy ships behind it

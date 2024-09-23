@@ -76,3 +76,11 @@ class EnemyShip(Turtle):
             self.fire()
 
         self.move_existing_projectiles()
+
+    def destroy_ship_artifacts(self):
+        self.clear()
+        self.hideturtle()
+
+        for laser in self.projectiles:
+            laser.clear()
+            laser.hideturtle()
