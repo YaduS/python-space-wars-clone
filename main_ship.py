@@ -5,6 +5,10 @@ from typing import List
 STARTING_POSITION = (0, -240)
 MOVE_SPEED = 15
 PROJECTILE_SPEED = 5
+SHIP_MAX_HEALTH = 30
+HIT_DAMAGE = (
+    3  # makes more sense to be a property of the projectile(enemy's in this case)
+)
 
 
 class MainShip(Turtle):
@@ -14,6 +18,8 @@ class MainShip(Turtle):
         self.set_shape(screen)
         self.configure_listeners(screen)
         self.projectiles: List[Turtle] = []
+        self.MAX_HEALTH = SHIP_MAX_HEALTH
+        self.current_health = SHIP_MAX_HEALTH
 
     def set_shape(self, screen: _Screen):
         self.penup()
@@ -86,3 +92,8 @@ class MainShip(Turtle):
 
     def cycle_update(self):
         self.move_existing_projectiles()
+
+    def ship_hit(self):
+        if self.current_health > 0:
+            self.current_health -= HIT_DAMAGE
+        print(f"ship hit; current health: {self.current_health}")

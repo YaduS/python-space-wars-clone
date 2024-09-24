@@ -25,7 +25,7 @@ class GameManager:
         self.screen.register_shape("./spaceship.gif")
         self.main_ship = MainShip(screen=self.screen)
         self.generate_enemy_ships()
-        self.game_ui = GameHUD()
+        self.game_hud = GameHUD()
 
     def generate_enemy_ships(self):
         # note: tweak hardcoded values in this file to change placement of enemy
@@ -80,7 +80,13 @@ class GameManager:
         for enemy_ship in self.enemy_ships:
             for i, laser in enumerate(enemy_ship.projectiles):
                 if self.main_ship.distance(laser) < 50:
-                    print("ship hit - reduce ship health")
+                    self.main_ship.ship_hit()
+
                     laser.clear()
                     laser.hideturtle()
                     del enemy_ship.projectiles[i]
+
+                    self.game_hud.update_health(
+                        self.main_ship.current_health,
+                        self.main_ship.MAX_HEALTH,
+                    )
