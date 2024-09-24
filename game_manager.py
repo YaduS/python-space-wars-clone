@@ -4,6 +4,7 @@ from typing import List
 
 from main_ship import MainShip
 from enemy_ship import EnemyShip
+from game_hud import GameHUD
 from game_constants import (
     MAX_Y,
     NO_OF_ENEMIES_PER_ROW,
@@ -23,8 +24,8 @@ class GameManager:
     def create_game_elements(self):
         self.screen.register_shape("./spaceship.gif")
         self.main_ship = MainShip(screen=self.screen)
-
         self.generate_enemy_ships()
+        self.game_ui = GameHUD()
 
     def generate_enemy_ships(self):
         # note: tweak hardcoded values in this file to change placement of enemy
