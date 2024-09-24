@@ -82,7 +82,6 @@ class MainShip(Turtle):
                 projectile.goto(x=projectile.xcor(), y=ycor)
 
         for index in projectiles_to_remove[::-1]:
-            print("index: ", index)
             self.projectiles[index].clear()
             self.projectiles[index].hideturtle()
             del self.projectiles[index]
