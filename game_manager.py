@@ -27,6 +27,8 @@ class GameManager:
         self.generate_enemy_ships()
         self.game_hud = GameHUD()
 
+        self.score = 0
+
     def generate_enemy_ships(self):
         # note: tweak hardcoded values in this file to change placement of enemy
         # ships. Its better to get these constants either from constants file or
@@ -53,11 +55,16 @@ class GameManager:
 
     def start_game_loop(self):
         game_active = True
+        self.game_hud.update_score(self.score)
         while game_active:
             self.screen.update()
             self.cycle_update()
             self.check_collisions()
             sleep(RENDER_DELAY)
+
+    def update_score(self):
+        self.score += 1
+        self.game_hud.update_score(self.score)
 
     def check_collisions(self):
         # check collision of main ship projectiles with enemy ships
@@ -66,6 +73,7 @@ class GameManager:
                 continue
             for i, enemy_ship in enumerate(self.enemy_ships):
                 if enemy_ship.distance(laser) < 50:
+
                     # remove enemy_ship
                     enemy_ship.destroy_ship_artifacts()
                     del self.enemy_ships[i]
@@ -74,6 +82,9 @@ class GameManager:
                     laser.clear()
                     laser.hideturtle()
                     del self.main_ship.projectiles[j]
+
+                    # update score
+                    self.update_score()
                     break
 
         # check collision of enemy projectiles with main ship
